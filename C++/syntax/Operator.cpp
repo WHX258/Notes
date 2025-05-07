@@ -22,5 +22,12 @@ int main(){
 
     cout<< (a2==b2) <<endl;
 
+    // 三目运算符： 表达式1 ? 表达式2 : 表达式3 (如果表达式1为真，返回表达式2，否则表达式3)
+    int x =1; int y = 2; 
+    int c = x>y ? x : y;
+    cout<< c <<endl;
+    // 返回的是变量，可以继续赋值
+    (x>y ? x : y) = 100;
+    cout<< "y = " << y <<endl; // y = 100
     return 0;
 }
