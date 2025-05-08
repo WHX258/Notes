@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "5.Function_swap.cpp", 
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
