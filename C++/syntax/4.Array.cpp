@@ -19,6 +19,7 @@ int main(){
     {1, 2, 3},
     {1, 2, 3}
     };
+    // vector有.push_back()操作，相当于append()
 
     // stack / 堆的操作
     stack<int> s;
