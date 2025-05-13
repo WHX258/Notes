@@ -38,7 +38,7 @@ e.g. 同类型的对象共用一块代码
 
 this指针的用途：
 *  当形参和类里变量同名时，可用this指针来区分
-*  **返回对象本身**时可使用return *this（非静态成员函数）
+*  **返回对象本身**时可使用return *this（非静态成员函数）, **返回类型是别名。**
 实现链式编程，不断写`对象.行为.行为...`
 ```C++
 class Person {
@@ -73,9 +73,9 @@ int main() {
 
 ## 空指针访问成员函数
 
-C++中空指针也是可以调用成员函数的，但是也要注意有没有用到this指针
-
-如果用到this指针，需要加以判断保证代码的健壮性
+C++中空指针也是可以访问成员函数的，但要注意有没有用到this指针
+如果用到this指针，需要加以判断
+**c++中指针-> 意思是 `(*指针).成员函数`**
 
 **示例：**
 
@@ -92,26 +92,21 @@ public:
 		if (this == NULL) {
 			return;
 		}
-		cout << mAge << endl;
+		cout << mAge << endl; // 这句其实是 this->mAge
 	}
 
 public:
 	int mAge;
 };
 
-void test01()
-{
+void test01() {
 	Person * p = NULL;
 	p->ShowClassName(); //空指针，可以调用成员函数
-	p->ShowPerson();  //但是如果成员函数中用到了this指针，就不可以了
+	p->ShowPerson();    //但是如果成员函数中用到了this指针，就不可以了，因为根本没创建对象，而this指向对象
 }
 
 int main() {
-
 	test01();
-
-	system("pause");
-
 	return 0;
 }
 ```
@@ -119,15 +114,14 @@ int main() {
 ## const修饰成员函数
 
 **常函数：**
-
-* 成员函数后加const后我们称为这个函数为**常函数**
-* 常函数内不可以修改成员属性
-* 成员属性声明时加关键字mutable后，在常函数中依然可以修改
+* **成员函数后加const**后我们称为这个函数为**常函数**
+* 常函数内**不可以修改成员属性**
+* 成员属性声明时加关键字`mutable`后，在常函数中依然可以修改
 
 **常对象：**
-
-* 声明对象前加const称该对象为常对象
-* 常对象只能调用常函数
+* **声明对象前加const**称该对象为**常对象**
+* **只能调用常函数**
+* 可以修改`mutable`修饰成员变量，其余变量**只能访问**
 
 **示例：**
 
@@ -139,8 +133,6 @@ public:
 		m_B = 0;
 	}
 
-	//this指针的本质是一个指针常量，指针的指向不可修改
-	//如果想让指针指向的值也不可以修改，需要声明常函数
 	void ShowPerson() const {
 		//const Type* const pointer;
 		//this = NULL; //不能修改指针的指向 Person* const this;
@@ -159,14 +151,13 @@ public:
 	mutable int m_B; //可修改 可变的
 };
 
-
 //const修饰对象  常对象
 void test01() {
 
 	const Person person; //常量对象  
 	cout << person.m_A << endl;
 	//person.mA = 100; //常对象不能修改成员变量的值,但是可以访问
-	person.m_B = 100; //但是常对象可以修改mutable修饰成员变量
+	person.m_B = 100;  //但是常对象可以修改mutable修饰成员变量
 
 	//常对象访问成员函数
 	person.MyFunc(); //常对象不能调用const的函数
@@ -174,11 +165,7 @@ void test01() {
 }
 
 int main() {
-
 	test01();
-
-	system("pause");
-
 	return 0;
 }
 ```
