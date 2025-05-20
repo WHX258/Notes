@@ -137,7 +137,7 @@ void test01() {
 
 	//每一个容器都有自己的迭代器，迭代器是用来遍历容器中的元素
 	//v.begin()返回迭代器，这个迭代器指向容器中第一个数据
-	//v.end()返回迭代器，这个迭代器指向容器元素的最后一个元素的下一个位置
+	//v.end()返回迭代器，这个迭代器指向容器元素的最后一个元素的  下一个位置
 	//vector<int>::iterator 拿到vector<int>这种容器的迭代器类型
 
 	vector<int>::iterator pBegin = v.begin();
