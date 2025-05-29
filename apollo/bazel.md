@@ -9,6 +9,7 @@
 
 # 使用流程
 
+1. 创建目录
 ```
 project
 │   WORKSPACE
@@ -20,10 +21,37 @@ project
 |
 ```
 
-BUILD内容如下：
-```build
+2. 编写BUILD内容：
+
+```bash
 cc_binary(
-    name = 'hello'
-    srcs = ["pkg.cc"]
+    name = 'hello'      # 生成的可执行文件名称
+    srcs = ["pkg.cc"]   # 源码文件
 )
 ```
+
+3. 进入project文件夹下编译：
+```bash
+bazel build //PKG/...
+```
+//表示当前目录下
+
+如果只编译一个文件（用 `:` ）：
+```bash
+bazel build //PKG:hello
+```
+
+编译后会在project下生成一些文件夹，如bazel-bin等
+
+4. 执行
+进入bazel-bin，启动刚才生成的可执行文件：
+```bash
+./bazel-bin/PKG/hello
+```
+既编译又执行 (某个文件)：
+```bash
+bazel run PKG:hello
+```
+
+
+
