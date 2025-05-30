@@ -151,3 +151,4 @@ cc_library(
     hdrs = ["demo_lib.h"]    # 头文件
     visibility = ["//demo_lib2:__pkg__"]
 )
+```
