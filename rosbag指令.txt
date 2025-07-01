@@ -1,0 +1,10 @@
+记录：
+rosbag record -a
+
+查看信息：
+rosbag info xx.bag
+
+回放：
+rosbag play xx.bag
+
+
